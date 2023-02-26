@@ -1,5 +1,3 @@
-const fs = require('fs');
-
 function solveEquation(a, b, c) {
   const discriminant = (-b) ** 2 - 4 * a * c;
 
@@ -22,30 +20,8 @@ function checkPath() {
   return !!process.argv[2];
 }
 
-function readFile() {
-  const file = fs.readFileSync(process.argv[2]).toString();
-  const firstLine = file.split(/\r?\n/)[0];
-  if (!firstLine) {
-    throw new Error('There is no line or separator on the first line');
-  }
-  console.log(firstLine)
-  const numbers = firstLine.split(/\s+/).map((s) => +s);
-  console.log(numbers)
-  if (numbers.some((n) => isNaN(n)) || numbers[0] === 0 || numbers.length !== 3) {
-    throw new Error('There are wrong numbers in the file');
-  }
-  solveEquation(...numbers);
-}
 
 function main() {
-  try {
-    if (checkPath()) {
-      readFile();
-    } else {
 
-    }
-  } catch (e) {
-    console.log(e.message);
-  }
 }
 main();
