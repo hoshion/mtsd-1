@@ -1,4 +1,5 @@
 const fs = require('fs');
+const prompt = require('prompt-sync')();
 
 function solveEquation(a, b, c) {
   const discriminant = (-b) ** 2 - 4 * a * c;
@@ -37,12 +38,29 @@ function readFile() {
   solveEquation(...numbers);
 }
 
+function promptValue(name, canBeZero = true) {
+  console.log('Prompt value ' + name);
+  const value = +prompt();
+  if (isNaN(value) || (!canBeZero && value === 0)) {
+    console.log('Wrong value is prompted, try again');
+    return promptValue(name, canBeZero);
+  }
+  return value;
+}
+
+function promptValues() {
+  const a = promptValue('a', false);
+  const b = promptValue('b');
+  const c = promptValue('c');
+  solveEquation(a, b, c);
+}
+
 function main() {
   try {
     if (checkPath()) {
       readFile();
     } else {
-
+      promptValues();
     }
   } catch (e) {
     console.log(e.message);
