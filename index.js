@@ -15,3 +15,13 @@ function solveEquation(a, b, c) {
     console.log(`There are 2 roots x1 = ${x1.toFixed(2)} x2 = ${x2.toFixed(2)}`);
   }
 }
+
+function checkPath() {
+  return !!process.argv[2];
+}
+
+
+function main() {
+
+}
+main();
